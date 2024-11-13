@@ -11,16 +11,24 @@ let height = context.canvas.height;
 function sizeCanvas() {
     width = window.innerWidth * 0,8; //verkleine naar 80%
     height = window.innerHeight * 0,8; // verkleine naar 80%
+    draw();
 }
 
 function draw() {
 
-    //const voor kleuren random//
-    const colors = {
-        background : hsl(randomNumber(0,360),20,95),
-        color1: hsl(randomNumber(0,360),70,60),
-        color2:  hsl(randomNumber(0,360),70,60),
-        color3:  hsl(randomNumber(0,360),70,50),
-        color4:  hsl(randomNumber(0,360),70,40)
+    function randomColor() {
+        const hue = Math.floor(Math.random() * 40) + 20;  // oranje-geel bereik
+        const lightness = Math.floor(Math.random() * 30) + 40;  // Lichtheid 40% # 70%
+        return hsl(hue, 70, lightness);
     }
+
+    // halve cirkel tekenen met variabele kleur en positie
+    function drawHalfCircle(x, y, radius, color, angleStart, angleEnd) {
+        context.fillStyle = color;
+        context.beginPath();
+        context.arc(x, y, radius, angleStart, angleEnd);
+        context.fill();
+    }
+
+
 }
