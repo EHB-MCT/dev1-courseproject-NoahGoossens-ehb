@@ -29,8 +29,9 @@ function draw() {
         context.fillRect(0, 0, width, height);
 
         // Teken twee halve cirkels rondom het canvas
-        drawHalfCircleLines(halfWidth, 0, halfWidth, randomColor(), 0, Math.PI); // Boven
-        drawHalfCircleLines(halfWidth, height, halfWidth, randomColor(), Math.PI, 2 * Math.PI); // Onder
+        const smallerRadius = Utils.randomNumber(200, 800);
+        drawHalfCircleLines(halfWidth, 0, smallerRadius, randomColor(), 0, Math.PI); // Boven
+        drawHalfCircleLines(halfWidth, height, smallerRadius, randomColor(), Math.PI, 2 * Math.PI); // Onder
 
          //Tekenen van vierkant in het midden.
         function drawCenterSquare() {
