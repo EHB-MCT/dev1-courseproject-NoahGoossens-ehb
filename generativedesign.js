@@ -1,7 +1,7 @@
 "use strict";
 import context from "../../scripts/context.js";
 import * as Utils from "../../scripts/utils.js";
-import { randomNumber } from "./scripts/utils.js";
+
 
 
 let canvas = context.canvas;
