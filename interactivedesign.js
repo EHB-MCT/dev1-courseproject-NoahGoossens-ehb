@@ -2,7 +2,8 @@
 import context from "/scripts/context.js";
 import * as Utils from "/scripts/utils.js";
 
-
+const width = context.canvas.width;
+const height = context.canvas.height;
 
 let mouseX = 0;
 let mouseY = 0;
@@ -92,10 +93,6 @@ function initVallendeSterren(aantalSterren) {
    
 }
 
-
-
-const width = context.canvas.width;
-const height = context.canvas.height;
 
 function grasHeuvels() {
      //grasveld
