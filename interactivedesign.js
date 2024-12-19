@@ -34,8 +34,8 @@ function tekenVallendeSterren() {
        const angle = Math.atan2(delY,delX);
 
        //aanpassen vallende ster op basis van muispositie
-       ster.x += Math.cos(angle) * ster.snelheid;
-       ster.y += Math.sin(angle) * ster.snelheid;
+       ster.x += Math.cos(angle) * 0.5;
+       ster.y += ster.snelheid;
 
        // Reset de ster als deze buiten het canvas is
        if (ster.x < 0 || ster.x > width || ster.y > height) {
