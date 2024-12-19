@@ -147,6 +147,7 @@ function tekenHuisOpHeuvel() {
   context.fill();
 }
 function spaceInvader(){
+   //sapce invader aanpassen
    const invaderSize = 300;
 
    const xPos = canvas.width - invaderSize; 
