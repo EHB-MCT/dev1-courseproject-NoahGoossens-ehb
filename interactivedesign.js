@@ -69,6 +69,7 @@ function tekenVallendeSterren() {
        
        grasHeuvels();
        tekenHuisOpHeuvel();
+       
    });
 
    requestAnimationFrame(tekenVallendeSterren);
@@ -145,10 +146,15 @@ function tekenHuisOpHeuvel() {
   context.closePath();
   context.fill();
 }
+function spaceInvader(){
+   
+
+}
 function startStarAnimation(){
    
    initVallendeSterren(20);
    tekenVallendeSterren();
+  
 }
 
 startStarAnimation();
