@@ -9,11 +9,8 @@ const aantalVallendeSterren = 18;
 function tekenVallendeSterren() {
    context.clearRect(0, 0, width, height);
    tekenAchtergrond();
-   tekenSterren();
-   grasHeuvels();
-   tekenHuisOpHeuvel();
-
    context.fillStyle = "white";
+   tekenSterren();
    vallendeSterren.forEach((ster) => {
        Utils.fillCircle(ster.x, ster.y, ster.size);
        ster.x += ster.gradenInval * ster.snelheid;
@@ -26,6 +23,8 @@ function tekenVallendeSterren() {
            ster.snelheid = Utils.randomNumber(2, 5);
            ster.gradenInval = Utils.randomNumber(-1, 1);
        }
+       grasHeuvels();
+       tekenHuisOpHeuvel();
    });
 
    requestAnimationFrame(tekenVallendeSterren);
