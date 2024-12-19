@@ -18,20 +18,31 @@ const aantalVallendeSterren = 18;
 
 function tekenVallendeSterren() {
    context.clearRect(0, 0, width, height);
+
    tekenAchtergrond();
+
    context.fillStyle = "white";
+
    tekenSterren();
+
    vallendeSterren.forEach((ster) => {
        Utils.fillCircle(ster.x, ster.y, ster.size);
-       ster.x += ster.gradenInval * ster.snelheid;
-       ster.y += ster.snelheid;
+       
+       //muis toevoegen
+       const delX = mouseX - ster.x;
+       const delY= mouseY - ster.y;
+       const angle = Math.atan2(delY,delX);
+
+       //aanpassen vallende ster op basis van muispositie
+       ster.x += Math.cos(angle) * ster.snelheid;
+       ster.y += Math.sin(angle) * ster.snelheid;
 
        // Reset de ster als deze buiten het canvas is
        if (ster.x < 0 || ster.x > width || ster.y > height) {
            ster.x = Utils.randomNumber(0, width);
            ster.y = Utils.randomNumber(-50, -10); // Laat de ster weer bovenaan starten
            ster.snelheid = Utils.randomNumber(2, 5);
-           ster.gradenInval = Utils.randomNumber(-1, 1);
+           
        }
        grasHeuvels();
        tekenHuisOpHeuvel();
