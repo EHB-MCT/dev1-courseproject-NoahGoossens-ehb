@@ -7,6 +7,10 @@ import * as Utils from "/scripts/utils.js";
 let mouseX = 0;
 let mouseY = 0;
 
+canvas.addEventListener('mousemove', function (event) {
+   mouseX = event.clientX;
+   mouseY = event.clientY;
+});
 
 //vallende sterren animatie aanmaken(hulp van chat gpt)
 let vallendeSterren = [];
