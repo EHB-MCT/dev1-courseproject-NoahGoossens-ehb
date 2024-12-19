@@ -16,65 +16,16 @@ canvas.addEventListener('mousemove', function (event) {
 let vallendeSterren = [];
 const aantalVallendeSterren = 18;
 
-function tekenVallendeSterren() {
-   context.clearRect(0, 0, width, height);
-
-   tekenAchtergrond();
-
-   context.fillStyle = "white";
-
-   tekenSterren();
-
-   vallendeSterren.forEach((ster) => {
-       Utils.fillCircle(ster.x, ster.y, ster.size);
-       
-       //muis toevoegen
-       const delX = mouseX - ster.x;
-       const delY= mouseY - ster.y;
-       const angle = Math.atan2(delY,delX);
-
-       //aanpassen vallende ster op basis van muispositie
-       ster.x += Math.cos(angle) * 0.5;
-       ster.y += ster.snelheid;
-
-       // Reset de ster als deze buiten het canvas is
-       if (ster.x < 0 || ster.x > width || ster.y > height) {
-           ster.x = Utils.randomNumber(0, width);
-           ster.y = Utils.randomNumber(-50, -10); // Laat de ster weer bovenaan starten
-           ster.snelheid = Utils.randomNumber(2, 5);
-           
-       }
-       grasHeuvels();
-       tekenHuisOpHeuvel();
-   });
-
-   requestAnimationFrame(tekenVallendeSterren);
-}
-
-//functie voor vallende sterren (update)
-function initVallendeSterren() {
-   for (let i = 0; i < aantalVallendeSterren; i++) {
-       vallendeSterren.push({
-           x: Utils.randomNumber(0, width),
-           y: Utils.randomNumber(0, height * 0.7),
-           size: Utils.randomNumber(1, 3),
-           snelheid: Utils.randomNumber(2, 5),
-           gradenInval: Utils.randomNumber(-1, 1),
-       });
-   }
-}
 
 
+//achtergrond functies instellen
+function tekenAchtergrondSterren() {
+   //kleur instellen voor achtergrond  
 
-const width = context.canvas.width;
-const height = context.canvas.height;
+   context.fillStyle = Utils.hsl(210 , 50 ,10);
+   context.fillRect(0,0,width,height * 0.7); //70% is lucht 30 is land (gras)
 
-
-
-//sterren
-let sterrenAantal = [];
-function tekenSterren() {
-   const sterrenAantal = 105; //instellen aantal sterren
+   const sterrenAantal = 1; //instellen aantal sterren
 
    for (let i = 0; i < sterrenAantal; i++) {
       const x = Utils.randomNumber(0,canvas.width);
@@ -85,13 +36,65 @@ function tekenSterren() {
    }
 }
 
-//achtergrond functies instellen
-function tekenAchtergrond() {
-   //kleur instellen voor achtergrond  
 
-   context.fillStyle = Utils.hsl(210 , 50 ,10);
-   context.fillRect(0,0,width,height * 0.7); //70% is lucht 30 is land (gras)
+function tekenVallendeSterren() {
+
+   //wissen canvas 
+   context.clearRect(0, 0, width, height);
+
+  
+   context.fillStyle = "white";
+   tekenAchtergrondSterren();
+ 
+
+      vallendeSterren.forEach((ster) => {
+       Utils.fillCircle(ster.x, ster.y, ster.size);
+       
+       //muis toevoegen
+       const delX = mouseX - ster.x; //verschil in X richting  
+       const delY= mouseY - ster.y; //verschil in Y richting  
+       const angle = Math.atan2(delY,delX); // Bereken de hoek naar de muis
+
+       //aanpassen vallende ster op basis van muispositie, lichte afbuiging
+       ster.x += Math.cos(angle) * 0.5;
+       ster.y += ster.snelheid * 0.9;
+
+       // Reset de ster als deze buiten het canvas is
+       if (ster.x < 0 || ster.x > width || ster.y > height) {
+           ster.x = Utils.randomNumber(0, width);
+           ster.y = Utils.randomNumber(-50, -10); // Laat de ster weer bovenaan starten
+           ster.snelheid = Utils.randomNumber(2, 5);
+           
+       }
+       
+       grasHeuvels();
+       tekenHuisOpHeuvel();
+   });
+
+   requestAnimationFrame(tekenVallendeSterren);
 }
+
+//functie voor vallende sterren (update)
+function initVallendeSterren(aantalSterren) {
+   //initieren vallende ster
+   if (vallendeSterren.length === 0) {}
+   for (let i = 0; i < aantalSterren; i++) {
+      
+       vallendeSterren.push({
+           x: Utils.randomNumber(0, width), //willekeurige x positie voor de ster
+           y: Utils.randomNumber(0, height * 0.7), //willekeurige y positie
+           size: Utils.randomNumber(1, 3), //willekeurige grootte
+           snelheid: Utils.randomNumber(2, 5), //willekeurige snelheid
+           gradenInval: Utils.randomNumber(-1, 1), //willekeurige inval hoek
+       });
+   }
+   
+}
+
+
+
+const width = context.canvas.width;
+const height = context.canvas.height;
 
 function grasHeuvels() {
      //grasveld
@@ -142,6 +145,10 @@ function tekenHuisOpHeuvel() {
   context.closePath();
   context.fill();
 }
-initVallendeSterren();
-tekenVallendeSterren();
+function startStarAnimation(){
+   
+   initVallendeSterren(20);
+   tekenVallendeSterren();
+}
 
+startStarAnimation();
