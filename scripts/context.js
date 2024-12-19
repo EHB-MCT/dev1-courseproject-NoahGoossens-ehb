@@ -2,6 +2,7 @@
 
 let context;
 
+
 setupCanvasContext();
 
 export default context;
