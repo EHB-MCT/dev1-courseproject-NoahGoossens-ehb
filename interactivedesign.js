@@ -48,12 +48,12 @@ function tekenHuisOpHeuvel() {
 
   //deur van huis
   context.fillStyle = Utils.rgb(100,50,0); 
-  context.fillRect(canvas.width * 0.5 -20, canvas.height * 0.5 - huisHoogte + 20, 40 , 60) 
+  context.fillRect(canvas.width * 0.5 -20, canvas.height * 0.5 - huisHoogte + 20, 40 , 60) ;
 
   //ramen
-  context.fillStyle = Utils.rgb(255,255,255);
-  context.fillRect(canvas.width * 0.5 - 46, canvas.height * 0.5 - huisHoogte + 20 ,20 ,20)
-  context.fillRect(canvas.width * 0.5 + 26, canvas.height * 0.5 - huisHoogte + 20 ,20 ,20)
+  context.fillStyle = Utils.rgb(255,255,255); 
+  context.fillRect(canvas.width * 0.5 - 46, canvas.height * 0.5 - huisHoogte + 20 ,20 ,20);
+  context.fillRect(canvas.width * 0.5 + 26, canvas.height * 0.5 - huisHoogte + 20,20 ,20);
   
 
 
