@@ -4,8 +4,10 @@ import * as Utils from "/scripts/utils.js";
 
 const width = context.canvas.width;
 const height = context.canvas.height;
-tekenSterren();
+
 tekenAchtergrond();
+tekenSterren();
+grasHeuvels();
 tekenHuisOpHeuvel();
 
 //sterren
@@ -27,9 +29,10 @@ function tekenAchtergrond() {
 
    context.fillStyle = Utils.hsl(210 , 50 ,10);
    context.fillRect(0,0,width,height * 0.7); //70% is lucht 30 is land (gras)
+}
 
-
-   //grasveld
+function grasHeuvels() {
+     //grasveld
    //heuvels van grasveld voor diepte
    context.beginPath();
    context.moveTo(0, canvas.height * 0.7);
@@ -49,7 +52,6 @@ function tekenAchtergrond() {
    context.fillStyle = kleurGrasLicht;
    Utils.fillEllipse(canvas.width * 0.8, canvas.height * 0.98, 600, 360);
 }
-
 //huis op heuvel tekenen
 function tekenHuisOpHeuvel() {
   const huisBreedte = 100;
