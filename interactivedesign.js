@@ -2,17 +2,58 @@
 import context from "/scripts/context.js";
 import * as Utils from "/scripts/utils.js";
 
+//vallende sterren animatie aanmaken(hulp van chat gpt)
+let vallendeSterren = [];
+const aantalVallendeSterren = 18;
+
+function tekenVallendeSterren() {
+   context.clearRect(0, 0, width, height);
+   tekenAchtergrond();
+   tekenSterren();
+   grasHeuvels();
+   tekenHuisOpHeuvel();
+
+   context.fillStyle = "white";
+   vallendeSterren.forEach((ster) => {
+       Utils.fillCircle(ster.x, ster.y, ster.size);
+       ster.x += ster.gradenInval * ster.snelheid;
+       ster.y += ster.snelheid;
+
+       // Reset de ster als deze buiten het canvas is
+       if (ster.x < 0 || ster.x > width || ster.y > height) {
+           ster.x = Utils.randomNumber(0, width);
+           ster.y = Utils.randomNumber(-50, -10); // Laat de ster weer bovenaan starten
+           ster.snelheid = Utils.randomNumber(2, 5);
+           ster.gradenInval = Utils.randomNumber(-1, 1);
+       }
+   });
+
+   requestAnimationFrame(tekenVallendeSterren);
+}
+
+//functie voor vallende sterren (update)
+function initVallendeSterren() {
+   for (let i = 0; i < aantalVallendeSterren; i++) {
+       vallendeSterren.push({
+           x: Utils.randomNumber(0, width),
+           y: Utils.randomNumber(0, height * 0.7),
+           size: Utils.randomNumber(1, 3),
+           snelheid: Utils.randomNumber(2, 5),
+           gradenInval: Utils.randomNumber(-1, 1),
+       });
+   }
+}
+
+
+
 const width = context.canvas.width;
 const height = context.canvas.height;
 
-tekenAchtergrond();
-tekenSterren();
-grasHeuvels();
-tekenHuisOpHeuvel();
+
 
 //sterren
 function tekenSterren() {
-   const sterrenAantal = 125; //instellen aantal sterren
+   const sterrenAantal = 105; //instellen aantal sterren
 
    for (let i = 0; i < sterrenAantal; i++) {
       const x = Utils.randomNumber(0,canvas.width);
@@ -81,4 +122,5 @@ function tekenHuisOpHeuvel() {
   context.fill();
 }
 
-
+tekenVallendeSterren();
+initVallendeSterren();

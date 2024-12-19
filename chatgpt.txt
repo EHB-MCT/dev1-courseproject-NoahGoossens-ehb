@@ -1,0 +1,45 @@
+hier is stuk code van chat gpt voor mijn animatie
+ik vroeg ook toen aan chat gpt om het in een andere bestand te zetten zoals gevraagt maar het liep rondt,
+dus doe ik het via een txt bestand het is gemakkelijker
+
+//functie voor vallende sterren
+function initVallendeSterren() {
+   for (let i = 0; i < aantalVallendeSterren; i++) {
+       vallendeSterren.push({
+           x: Utils.randomNumber(0, width),
+           y: Utils.randomNumber(0, height * 0.7),
+           size: Utils.randomNumber(1, 3),
+           snelheid: Utils.randomNumber(2, 5),
+           gradenInval: Utils.randomNumber(-1, 1),
+       });
+   }
+}
+
+function tekenVallendeSterren() {
+   context.clearRect(0, 0, width, height);
+   tekenAchtergrond();
+   tekenSterren();
+   grasHeuvels();
+   tekenHuisOpHeuvel();
+
+   context.fillStyle = "white";
+   vallendeSterren.forEach((ster) => {
+       Utils.fillCircle(ster.x, ster.y, ster.size);
+       ster.x += ster.gradenInval * ster.snelheid;
+       ster.y += ster.snelheid;
+
+       // Reset de ster als deze buiten het canvas is
+       if (ster.x < 0 || ster.x > width || ster.y > height) {
+           ster.x = Utils.randomNumber(0, width);
+           ster.y = Utils.randomNumber(-50, -10); // Laat de ster weer bovenaan starten
+           ster.snelheid = Utils.randomNumber(2, 5);
+           ster.gradenInval = Utils.randomNumber(-1, 1);
+       }
+   });
+
+   requestAnimationFrame(tekenVallendeSterren);
+}
+
+
+hier is de link van de chat : https://chatgpt.com/share/676377f8-ebc8-8000-be4d-0d8ee48e6227
+
