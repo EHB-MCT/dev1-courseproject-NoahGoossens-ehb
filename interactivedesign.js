@@ -54,8 +54,14 @@ function tekenHuisOpHeuvel() {
   context.fillStyle = Utils.rgb(255,255,255); 
   context.fillRect(canvas.width * 0.5 - 46, canvas.height * 0.5 - huisHoogte + 20 ,20 ,20);
   context.fillRect(canvas.width * 0.5 + 26, canvas.height * 0.5 - huisHoogte + 20,20 ,20);
-  
 
-
+  //dak
+  context.fillStyle = Utils.rgb(150,75,0);
+  context.beginPath();
+  context.moveTo(canvas.width * 0.5 - huisBreedte / 2, canvas.height * 0.5 - huisHoogte);
+  context.lineTo(canvas.width * 0.5, canvas.height * 0.5 - huisHoogte - dakHoogte); 
+  context.lineTo(canvas.width * 0.5 + huisBreedte / 2, canvas.height * 0.5 - huisHoogte);
+  context.closePath();
+  context.fill();
 }
 
