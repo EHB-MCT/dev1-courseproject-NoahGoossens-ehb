@@ -2,6 +2,12 @@
 import context from "/scripts/context.js";
 import * as Utils from "/scripts/utils.js";
 
+
+
+let mouseX = 0;
+let mouseY = 0;
+
+
 //vallende sterren animatie aanmaken(hulp van chat gpt)
 let vallendeSterren = [];
 const aantalVallendeSterren = 18;
@@ -51,6 +57,7 @@ const height = context.canvas.height;
 
 
 //sterren
+let sterrenAantal = [];
 function tekenSterren() {
    const sterrenAantal = 105; //instellen aantal sterren
 
@@ -120,6 +127,6 @@ function tekenHuisOpHeuvel() {
   context.closePath();
   context.fill();
 }
-
-tekenVallendeSterren();
 initVallendeSterren();
+tekenVallendeSterren();
+
