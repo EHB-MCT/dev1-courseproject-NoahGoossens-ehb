@@ -4,9 +4,23 @@ import * as Utils from "/scripts/utils.js";
 
 const width = context.canvas.width;
 const height = context.canvas.height;
-
+tekenSterren();
 tekenAchtergrond();
 tekenHuisOpHeuvel();
+
+//sterren
+function tekenSterren() {
+   const sterrenAantal = 125; //instellen aantal sterren
+
+   for (let i = 0; i < sterrenAantal; i++) {
+      const x = Utils.randomNumber(0,canvas.width);
+      const y = Utils.randomNumber(0,canvas.height * 0.7);
+      const grootte = Utils.randomNumber(1,2);
+      context.fillStyle = Utils.hsl(60,100,90);
+      Utils.fillCircle(x,y,grootte);
+   }
+}
+
 //achtergrond functies instellen
 function tekenAchtergrond() {
    //kleur instellen voor achtergrond  
@@ -64,4 +78,5 @@ function tekenHuisOpHeuvel() {
   context.closePath();
   context.fill();
 }
+
 
