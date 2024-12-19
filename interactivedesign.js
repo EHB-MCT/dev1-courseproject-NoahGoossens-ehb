@@ -69,7 +69,7 @@ function tekenVallendeSterren() {
        
        grasHeuvels();
        tekenHuisOpHeuvel();
-       
+       spaceInvader();
    });
 
    requestAnimationFrame(tekenVallendeSterren);
@@ -147,7 +147,40 @@ function tekenHuisOpHeuvel() {
   context.fill();
 }
 function spaceInvader(){
+   const invaderSize = 300;
+
+   const xPos = canvas.width - invaderSize; 
+   const yPos = canvas.height - invaderSize; 
+
+  
+   context.beginPath();
+   context.fillStyle = "black";
+   context.rect(xPos, yPos, invaderSize, invaderSize);  
+   context.fill();
+
+
+   context.beginPath();
+   context.fillStyle = "#83f52c"; 
+
    
+   const centerX = xPos + invaderSize / 2;
+   const centerY = yPos + invaderSize / 2;
+
+ 
+   context.rect(centerX - 25, centerY - 125, 50, 50);  
+   context.rect(centerX - 75, centerY - 75, 50, 50);   
+   context.rect(centerX + 25, centerY - 75, 50, 50);  
+   context.rect(centerX + 75, centerY - 25, 50, 50);   
+   context.rect(centerX - 75, centerY - 25, 50, 50);   
+   context.rect(centerX - 25, centerY + 25, 50, 50);   
+   context.rect(centerX - 125, centerY - 25, 50, 50); 
+   context.rect(centerX - 125, centerY + 25, 50, 50);  
+   context.rect(centerX - 125, centerY + 75, 50, 50); 
+   context.rect(centerX + 25, centerY - 25, 50, 50);  
+   context.rect(centerX + 75, centerY + 25, 50, 50);  
+   context.rect(centerX + 75, centerY + 75, 50, 50); 
+
+   context.fill();  
 
 }
 function startStarAnimation(){
